@@ -13,12 +13,12 @@ public class MouseLook : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        StartCoroutine(RaycastGenerator());
     }
     
     private void Update()
     {
-        Look();        
+        Look();
+        GenerateRaycast();
         if (Input.GetButtonDown("Execute") && _playableObject != null)
             ExecuteObject();
     }
@@ -36,15 +36,6 @@ public class MouseLook : MonoBehaviour
     }
 
     private void ExecuteObject() => _playableObject.Execute();
-
-    private IEnumerator RaycastGenerator()
-    {
-        while (true)
-        {
-            GenerateRaycast();
-            yield return new WaitForSeconds(0.6f);
-        }
-    }
 
     private void GenerateRaycast()
     {
